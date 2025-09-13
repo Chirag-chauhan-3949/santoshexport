@@ -1,12 +1,16 @@
 import React from 'react';
 import { Wheat, Star, Award, Zap } from 'lucide-react';
 
+// Replace the placeholder image URLs with your real images (public folder or remote CDN).
+// If you're using Next.js and want the <Image> component, swap <img> for next/image and import it.
+
 const ProductVariants = () => {
   const products = [
     {
       category: 'Raw Basmati Rice',
       variants: ['1121', '1718', '1847'],
-      icon: Wheat,
+      // imageUrl can be a path under /public (e.g. '/images/raw-1121.jpg') or a CDN URL
+      imageUrl: 'Images/1.jpg',
       color: 'emerald',
       description: 'Premium quality raw basmati rice with natural aroma and long grains.',
       features: [
@@ -22,7 +26,7 @@ const ProductVariants = () => {
     {
       category: 'Steam Basmati Rice',
       variants: ['1121', '1718', '1847', '1509'],
-      icon: Star,
+      imageUrl: 'images/2.jpg',
       color: 'amber',
       description: 'Steam processed basmati rice maintaining nutritional value and taste.',
       features: [
@@ -38,7 +42,7 @@ const ProductVariants = () => {
     {
       category: 'Sella Basmati Rice',
       variants: ['1121', '1718', '1847', '1509'],
-      icon: Award,
+      imageUrl: 'images/3.jpg',
       color: 'emerald',
       description: 'Parboiled basmati rice with enhanced nutritional content and durability.',
       features: [
@@ -54,7 +58,7 @@ const ProductVariants = () => {
     {
       category: 'Golden Sella Basmati Rice',
       variants: ['1121', '1718', '1847', '1509'],
-      icon: Zap,
+      imageUrl: '/images/4.jpg',
       color: 'amber',
       description: 'Premium golden sella basmati rice with distinctive color and superior quality.',
       features: [
@@ -76,7 +80,7 @@ const ProductVariants = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Our <span className="text-emerald-600">Product Variants</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-emerald-600 to-amber-600 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-600 to-amber-600 mx-auto mb-6" />
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
             Premium basmati rice varieties processed to international standards for global markets.
           </p>
@@ -84,34 +88,44 @@ const ProductVariants = () => {
 
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
           {products.map((product, index) => {
-            const Icon = product.icon;
+            const isEmerald = product.color === 'emerald';
+
             return (
-              <div 
+              <div
                 key={index}
                 className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 overflow-hidden"
               >
-                <div className={`h-2 bg-gradient-to-r ${
-                  product.color === 'emerald' 
-                    ? 'from-emerald-600 to-emerald-400' 
-                    : 'from-amber-600 to-amber-400'
-                }`}></div>
-                
+                <div className={`h-2 bg-gradient-to-r ${isEmerald ? 'from-emerald-600 to-emerald-400' : 'from-amber-600 to-amber-400'}`} />
+
                 <div className="p-6 sm:p-8">
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 mb-6">
-                    <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${
-                      product.color === 'emerald' 
-                        ? 'from-emerald-100 to-emerald-200' 
-                        : 'from-amber-100 to-amber-200'
-                    } rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
-                      <Icon className={`h-6 w-6 sm:h-8 sm:w-8 ${
-                        product.color === 'emerald' ? 'text-emerald-600' : 'text-amber-600'
-                      }`} />
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-6">
+                    {/* Image / avatar area */}
+                    <div className={`flex-shrink-0 rounded-xl overflow-hidden bg-gray-100 ${isEmerald ? 'ring-emerald-100' : 'ring-amber-100'} ring-1 ring-opacity-80`}>
+                      {/* Make a fixed aspect ratio box so images look consistent */}
+                      <div className="w-28 h-28 sm:w-32 sm:h-32 relative overflow-hidden">
+                        {product.imageUrl ? (
+                          <img
+                            src={product.imageUrl}
+                            alt={product.category}
+                            className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                          />
+                        ) : (
+                          // fallback to icon if image missing
+                          <div className={`w-full h-full flex items-center justify-center ${isEmerald ? 'bg-emerald-50' : 'bg-amber-50'}`}>
+                            {/* keep the old icon as fallback */}
+                            {/* eslint-disable-next-line react/jsx-pascal-case */}
+                            <Wheat className={`h-8 w-8 ${isEmerald ? 'text-emerald-600' : 'text-amber-600'}`} />
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors duration-300">
+
+                    <div className="flex-1">
+                      <h3 className={`text-xl sm:text-2xl font-bold text-gray-900 ${isEmerald ? 'group-hover:text-emerald-600' : 'group-hover:text-amber-600'} transition-colors duration-300`}>
                         {product.category}
                       </h3>
-                      <p className="text-sm sm:text-base text-gray-600">{product.description}</p>
+                      <p className="text-sm sm:text-base text-gray-600 mt-1">{product.description}</p>
                     </div>
                   </div>
 
@@ -119,13 +133,9 @@ const ProductVariants = () => {
                     <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-3">Available Variants:</h4>
                     <div className="flex flex-wrap gap-2">
                       {product.variants.map((variant, vIndex) => (
-                        <span 
+                        <span
                           key={vIndex}
-                          className={`px-3 py-1 sm:px-4 sm:py-2 bg-gradient-to-r ${
-                            product.color === 'emerald'
-                              ? 'from-emerald-100 to-emerald-50 text-emerald-800 border border-emerald-200'
-                              : 'from-amber-100 to-amber-50 text-amber-800 border border-amber-200'
-                          } rounded-lg font-medium text-xs sm:text-sm hover:shadow-md transition-shadow duration-200`}
+                          className={`px-3 py-1 sm:px-4 sm:py-2 bg-gradient-to-r ${isEmerald ? 'from-emerald-100 to-emerald-50 text-emerald-800 border border-emerald-200' : 'from-amber-100 to-amber-50 text-amber-800 border border-amber-200'} rounded-lg font-medium text-xs sm:text-sm hover:shadow-md transition-shadow duration-200`}
                         >
                           {variant} Basmati
                         </span>
@@ -138,9 +148,7 @@ const ProductVariants = () => {
                     <div className="grid grid-cols-1 gap-3">
                       {product.features.map((feature, fIndex) => (
                         <div key={fIndex} className="flex items-center space-x-2">
-                          <div className={`w-2 h-2 rounded-full ${
-                            product.color === 'emerald' ? 'bg-emerald-600' : 'bg-amber-600'
-                          }`}></div>
+                          <div className={`w-2 h-2 rounded-full ${isEmerald ? 'bg-emerald-600' : 'bg-amber-600'}`} />
                           <span className="text-gray-700 text-xs sm:text-sm">{feature}</span>
                         </div>
                       ))}

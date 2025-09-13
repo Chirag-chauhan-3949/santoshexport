@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, FileText, Send, CheckCircle } from 'lucide-react';
 
-const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/chiragsinghchauhan3949323@gmail.com';
+const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/kkaran.khatri@gmail.com';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -83,13 +83,13 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Phone',
-      details: ['+91 8619734001', '+91 9928860941'],
+      details: ['+91 8619734001', '+91 8690774861'],
       color: 'emerald'
     },
     {
       icon: Mail,
       title: 'Email',
-      details: ['info@santoshexports.com', 'sales@santoshexports.com'],
+      details: ['kkaran.khatri@gmail.com'],
       color: 'amber'
     },
     {
