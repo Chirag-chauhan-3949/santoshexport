@@ -202,3 +202,6 @@ const ProductVariants = () => {
 };
 
 export default ProductVariants;
+
+
+// updated with image
