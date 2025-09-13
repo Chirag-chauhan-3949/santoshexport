@@ -10,7 +10,7 @@ const ProductVariants = () => {
       category: 'Raw Basmati Rice',
       variants: ['1121', '1718', '1847'],
       // imageUrl can be a path under /public (e.g. '/images/raw-1121.jpg') or a CDN URL
-      imageUrl: 'Images/1.jpg',
+      imageUrl: '/images/1.jpg',
       color: 'emerald',
       description: 'Premium quality raw basmati rice with natural aroma and long grains.',
       features: [
@@ -26,7 +26,7 @@ const ProductVariants = () => {
     {
       category: 'Steam Basmati Rice',
       variants: ['1121', '1718', '1847', '1509'],
-      imageUrl: 'images/2.jpg',
+      imageUrl: '/images/2.jpg',
       color: 'amber',
       description: 'Steam processed basmati rice maintaining nutritional value and taste.',
       features: [
@@ -42,7 +42,7 @@ const ProductVariants = () => {
     {
       category: 'Sella Basmati Rice',
       variants: ['1121', '1718', '1847', '1509'],
-      imageUrl: 'images/3.jpg',
+      imageUrl: '/images/3.jpg',
       color: 'emerald',
       description: 'Parboiled basmati rice with enhanced nutritional content and durability.',
       features: [
