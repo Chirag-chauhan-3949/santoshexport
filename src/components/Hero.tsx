@@ -35,7 +35,7 @@ const Hero = () => {
                 onClick={scrollToContact}
                 className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base"
               >
-                Get Quote
+                Contact Us
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>
               <button 
